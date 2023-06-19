@@ -206,7 +206,7 @@ class WebApiContext implements ApiClientAwareContext
     {
         $expectedRegexp = '/' . preg_quote($text) . '/i';
         $actual = (string) $this->response->getBody();
-        Assertions::assertRegExp($expectedRegexp, $actual);
+        Assertions::assertMatchesRegularExpression($expectedRegexp, $actual);
     }
 
     /**
@@ -220,7 +220,7 @@ class WebApiContext implements ApiClientAwareContext
     {
         $expectedRegexp = '/' . preg_quote($text) . '/';
         $actual = (string) $this->response->getBody();
-        Assertions::assertNotRegExp($expectedRegexp, $actual);
+        Assertions::assertDoesNotMatchRegularExpression($expectedRegexp, $actual);
     }
 
     /**
@@ -270,7 +270,7 @@ class WebApiContext implements ApiClientAwareContext
 
         if (preg_match('/^\%.+\%$/', $expected, $result)) {
             $pattern = sprintf('/%s/', trim($result[0], '%'));
-            Assertions::assertRegExp($pattern, $actual);
+            Assertions::assertMatchesRegularExpression($pattern, $actual);
 
             return;
         }
