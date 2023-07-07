@@ -366,6 +366,9 @@ class WebApiContext implements ApiClientAwareContext
     protected function addHeader($name, $value)
     {
         if (isset($this->headers[$name])) {
+            if ($this->headers[$name] === $value) {
+                return;
+            }
             if (!is_array($this->headers[$name])) {
                 $this->headers[$name] = array($this->headers[$name]);
             }
