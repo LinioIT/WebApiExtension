@@ -268,6 +268,12 @@ class WebApiContext implements ApiClientAwareContext
             return;
         }
 
+        if (is_null($expected)) {
+            Assertions::assertEquals($expected, $actual, 'JSON equality');
+
+            return;
+        }
+
         if (preg_match('/^\%.+\%$/', $expected, $result)) {
             $pattern = sprintf('/%s/', trim($result[0], '%'));
             Assertions::assertMatchesRegularExpression($pattern, $actual);
