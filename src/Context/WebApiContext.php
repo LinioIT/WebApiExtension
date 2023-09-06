@@ -268,7 +268,7 @@ class WebApiContext implements ApiClientAwareContext
             return;
         }
 
-        if (preg_match('/^\%.+\%$/', $expected, $result)) {
+        if (preg_match('/^\%.+\%$/', $expected ?? '', $result)) {
             $pattern = sprintf('/%s/', trim($result[0], '%'));
             Assertions::assertMatchesRegularExpression($pattern, $actual);
 
