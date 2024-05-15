@@ -85,7 +85,7 @@ class WebApiContext implements ApiClientAwareContext
      */
     public function iSetHeaderWithValue($name, $value)
     {
-        $this->addHeader($name, $value);
+        $this->addHeader($name, $this->replacePlaceHolder($value));
     }
 
     /**
